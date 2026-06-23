@@ -1,5 +1,6 @@
 ## OurRitual: Detailed Product Investigation and Market Analysis Report
 
+
 ### 1. Executive Summary & Value Proposition:
 
 OurRitual is an online couples therapy and relationship support platform launched in 2022 (formerly known as Hey Ritual). It provides a hybrid model that combines live video sessions with licensed relationship experts and self-guided digital content through a user-friendly mobile application and web platform.
