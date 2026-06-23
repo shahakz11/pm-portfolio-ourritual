@@ -2,16 +2,6 @@
 
 ---
 
-### 1. Document Version & Owner Info
-
-*   **Document Version:** 1.0
-*   **Date:** October 26, 2023
-*   **Product Manager:** [Your Name/Senior PM]
-*   **Team:** OurRitual Product & Engineering
-*   **Feature Name:** Ritual Match: Transparent Therapist & Session Customization
-
----
-
 ### 2. Objective & Vision
 
 **Objective:** To empower OurRitual users with greater control and transparency in selecting their relationship expert and customizing session parameters, thereby fostering stronger therapeutic alliances, increasing user satisfaction, and strengthening the overall trust in the OurRitual platform.
