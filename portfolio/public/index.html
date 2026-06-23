@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Manager Case Study - OurRitual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+    --bg-light: #F8FAFC;
+    --bg-secondary: #E2E8F0;
+    --card-bg: #FFFFFF;
+    --border: #CBD5E1;
+    --primary: #4F86C6;
+    --primary-hover: #3F6BA8;
+    --primary-glow: rgba(79, 134, 198, 0.3);
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --success: #10B981;
+    --success-bg: #D1FAE5;
+    --font-heading: 'Inter', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--bg-secondary);
+    color: var(--text-main);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+.background-decor {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    z-index: -1;
+    opacity: 0.08;
+}
+.blur-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--primary);
+    top: -50px;
+    right: -50px;
+}
+.blur-2 {
+    width: 350px;
+    height: 350px;
+    background: #06B6D4;
+    bottom: -100px;
+    left: -100px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: var(--bg-light);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    font-family: var(--font-heading);
+}
+
+.logo-brand {
+    color: var(--primary);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--text-main), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    border-radius: 9999px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-family: var(--font-heading);
+}
+
+.btn.primary {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 14px var(--primary-glow);
+}
+
+.btn.primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(254, 94, 0, 0.3);
+}
+
+.btn.large {
+    padding: 14px 36px;
+    font-size: 1.1rem;
+}
+
+.intro-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    max-width: 800px;
+}
+
+.quick-links {
+    display: flex;
+    gap: 20px;
+}
+
+.quick-link {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    padding: 16px 28px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+.quick-link:hover {
+    background: var(--bg-light);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.quick-link .icon {
+    font-size: 2rem;
+}
+
+.quick-link div {
+    display: flex;
+    flex-direction: column;
+}
+
+.quick-link strong {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.quick-link span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.tabs-header {
+    display: flex;
+    gap: 10px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 25px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.tab-btn:hover {
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    color: var(--primary);
+    font-weight: 800;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--primary);
+}
+
+.tab-content {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+    min-height: 400px;
+}
+
+.hidden {
+    display: none;
+}
+
+.content-body h1, .content-body h2, .content-body h3 {
+    margin-top: 35px;
+    color: var(--text-main);
+    font-family: var(--font-heading);
+}
+
+.content-body h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.content-body h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.content-body h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.content-body p, .content-body li {
+    color: var(--text-main);
+    font-size: 1.05rem;
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.content-body ul, .content-body ol {
+    padding-left: 24px;
+    margin-bottom: 20px;
+}
+
+.content-body li {
+    margin-bottom: 8px;
+}
+
+.content-body strong {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.content-body em {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.content-body code {
+    background-color: var(--bg-secondary);
+    color: #EF4444;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.content-body hr {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 40px 0;
+}
+
+    </style>
+</head>
+<body>
+    <div class="background-decor blur-1"></div>
+    <div class="background-decor blur-2"></div>
+    
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-brand">ourritual</span> | PM Portfolio Application
+        </div>
+        <div class="actions">
+            <a href="https://stitch.withgoogle.com/projects/12927047924178859191" target="_blank" class="btn primary">View Stitch Prototypes</a>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section class="intro-card">
+            <h1>Product Management Strategy & Artifacts</h1>
+            <p class="subtitle">Prepared for the Product Manager role at OurRitual. Complete with Market Investigation, product ideation, detailed PRD, and design layouts.</p>
+            
+            <div class="quick-links">
+                <a href="https://stitch.withgoogle.com/projects/12927047924178859191" target="_blank" class="quick-link">
+                    <span class="icon">🎨</span>
+                    <div>
+                        <strong>Stitch Workspace</strong>
+                        <span>Review screen mockups and design system rules</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <div class="tabs-header">
+            <button class="tab-btn active" onclick="switchTab('investigation')">1. Market Investigation</button>
+            <button class="tab-btn" onclick="switchTab('prd')">2. Product Requirement Document (PRD)</button>
+            <button class="tab-btn" onclick="switchTab('design')">3. Design Guidelines</button>
+        </div>
+        
+        <section class="tab-content" id="investigation">
+            <div class="content-body">
+                <h2>OurRitual: Detailed Product Investigation and Market Analysis Report</h2>
+
+<h3>1. Executive Summary & Value Proposition:</h3>
+
+<p>OurRitual is an online couples therapy and relationship support platform launched in 2022 (formerly known as Hey Ritual). It provides a hybrid model that combines live video sessions with licensed relationship experts and self-guided digital content through a user-friendly mobile application and web platform.</p>
+
+<p><strong>Core Mission and Unique Value Proposition:</strong></p>
+<p>OurRitual's core mission is to "cultivate healthier, lasting partnerships through integrated support" and to "redefine relationship support and strengthening bonds, one connection at a time." The company aims to democratize expert assistance by making relationship support more accessible, affordable, and flexible than traditional couples therapy.</p>
+
+<p>Its unique value proposition lies in its structured, science-backed approach, primarily utilizing methods like the Gottman Method and Emotionally Focused Therapy (EFT). The platform emphasizes individual growth within the context of a relationship through personalized "Pathways," which include video lessons, journal prompts, and exercises. This blend of human expertise with technology provides continuous, personalized care designed to integrate into everyday life, offering a "skill-building" and "action-oriented" alternative to open-ended talk therapy.</p>
+
+<h3>2. Target Users & Personas:</h3>
+
+<p>OurRitual primarily targets couples and individuals seeking to improve their relationships, focusing on various stages and challenges.</p>
+
+<p><strong>Key Users and Customer Segments:</strong></p>
+<ul>
+<li><strong>Couples in "Middle Ground":</strong> Those not in crisis but who feel a lost spark, encounter recurring arguments, or want to enhance their bond proactively.</li>
+<li><strong>Individuals seeking Relationship Growth:</strong> One partner wanting to work on their relationship skills even if the other isn't ready to join.</li>
+<li><strong>Couples Navigating Life Transitions:</strong> New parents, couples moving in together, or those managing career changes.</li>
+<li><strong>Preventative Care Seekers:</strong> Healthy couples looking for tools and guidance to maintain and strengthen their relationship before major issues arise.</li>
+<li><strong>Tech-Savvy Individuals:</strong> Users comfortable with app-based learning and virtual sessions.</li>
+<li><strong>Those without Insurance or Access to In-Person Therapy:</strong> OurRitual does not accept insurance, making it an alternative for out-of-pocket payers. It also serves urban populations with limited resources and accommodates long-distance, LGBTQ+, and military couples due to its virtual nature.</li>
+</ul>
+<p><strong>2 Key User Personas:</strong></p>
+
+<p><strong>Persona 1: The Proactive Professional Couple (Sarah & Mark)</strong></p>
+<ul>
+<li><strong>Demographics:</strong> Sarah (32, Marketing Manager) and Mark (34, Software Engineer), dual-income, no children yet but considering starting a family. Live in a bustling urban area.</li>
+<li><strong>Goals:</strong> Want to proactively strengthen their communication, manage minor conflicts more effectively, and ensure their relationship remains a priority amidst busy careers. They've seen friends struggle with relationships after marriage/kids and want to avoid similar pitfalls. They are tech-savvy and appreciate structured learning.</li>
+<li><strong>Pain Points:</strong> Limited time for traditional in-person therapy due to demanding schedules. Find many self-help books generic. Value evidence-based approaches but need practical, actionable steps. Concerns about cost and convenience of traditional therapy.</li>
+<li><strong>Why OurRitual Appeals:</strong> The flexible 20-40 minute virtual sessions fit their schedule. The "Pathways" provide structured content and homework between sessions, appealing to their desire for actionable skill-building. The app's convenience and ability to track progress resonates with their organized nature.</li>
+</ul>
+<p><strong>Persona 2: The Stressed New Parents (Emily & David)</strong></p>
+<ul>
+<li><strong>Demographics:</strong> Emily (30, Teacher) and David (31, Architect), recently welcomed their first child. Living in a suburban area where specialized couples therapy can be hard to find or expensive.</li>
+<li><strong>Goals:</strong> Feeling disconnected and overwhelmed after the arrival of their baby. Experiencing increased arguments and communication breakdowns. Seeking to reconnect emotionally, improve conflict resolution, and learn strategies to navigate the stresses of parenthood together.</li>
+<li><strong>Pain Points:</strong> Severely limited free time and energy due to childcare. Difficulty finding a therapist who understands the unique challenges of new parents. High cost of traditional therapy. The thought of finding a babysitter for therapy sessions adds to their stress.</li>
+<li><strong>Why OurRitual Appeals:</strong> The flexibility of virtual sessions and the ability to choose session lengths (20-40 mins) is crucial for their unpredictable schedule. The "Love after kids" Pathway directly addresses their current challenges. The app's resources and exercises allow them to engage with relationship work at their own pace, even in short bursts, between sessions. The affordability compared to traditional therapy is also a significant draw.</li>
+</ul>
+<h3>3. User Reviews & Pain Points:</h3>
+
+<p>User reviews for OurRitual are generally positive regarding the efficacy of the therapy itself, but reveal significant friction points related to the app's functionality and business practices.</p>
+
+<p><strong>Major Complaints, Friction Points, and User Reviews:</strong></p>
+<ul>
+<li><strong>App Bugs & Technical Issues:</strong> A recurring complaint, especially among Android users (3.4/5 stars on Google Play based on 10 reviews vs. iOS 4.5/5 stars with 46 reviews), is the presence of bugs. Users report issues with logging in, needing to log in multiple times, and inability to access resources or activities within the app. Some describe the app as "glitchy" and "unhelpful."</li>
+<li><strong>Customer Service & Cancellation Difficulties:</strong> Numerous users report ambiguous and unhelpful interactions with customer service. Canceling subscriptions is often described as difficult, involving "back and forth" emails and surveys. There are reports of users being charged after cancellation or incurring early termination fees, leading to feelings of being "trapped."</li>
+<li><strong>Pricing, Contracts, and 14-Day Guarantee "Loophole":</strong> A significant pain point revolves around the business model. Users perceive the system as designed to lock them into monthly recurring revenue. The 14-day money-back guarantee is criticized as being nearly impossible to utilize because the earliest available session might fall outside this window, leaving users stuck with upfront payments.</li>
+<li><strong>Therapist Matching & Transparency:</strong> Users cannot select their own therapist. There's a lack of transparency regarding the expert's qualifications and background prior to the first session, which can lead to uncertainty. Some users have reported being assigned therapists who were "unprepared, awkward, and reading from a script" or had limited availability and finished sessions early.</li>
+<li><strong>Session Length and Flexibility:</strong> While the shorter 20-40 minute sessions are a benefit for some busy users, others find them too short and rushed, wishing for more control over session duration.</li>
+<li><strong>Outsourced Experts & Communication Barriers:</strong> Some reviewers have noted that experts are outsourced from foreign countries, which can occasionally lead to communication challenges or "thick accents" that distract from the emotional work.</li>
+<li><strong>No Insurance Acceptance:</strong> OurRitual does not accept health insurance or FSA/HSA cards, which can be a barrier for many seeking therapy, despite being positioned as an affordable alternative.</li>
+</ul>
+<p><strong>What is holding the product back:</strong></p>
+<p>The primary factors holding OurRitual back are <strong>technical instability</strong> (bugs), <strong>poor customer service</strong>, and a <strong>business model perceived as predatory</strong> regarding contracts and cancellations. While the core therapeutic offering and expert quality are generally praised, the friction points related to the user experience outside of the direct therapy sessions significantly undermine overall satisfaction and trust. The inability to choose a therapist and the lack of transparency about expert credentials also detract from the personalized and professional image they aim to project.</p>
+
+<h3>4. Key Markets & Competitors:</h3>
+
+<p><strong>Main Geographic and Economic Markets:</strong></p>
+<p>OurRitual primarily operates in the <strong>United States</strong>, with approximately 80% of its users based there. A significant portion (75%) of its user base is located in <strong>urban populations</strong>. The company positions itself as an accessible alternative to traditional therapy, catering to those who may not have insurance coverage or readily available in-person services. It also serves an economic market segment that finds traditional therapy expensive and seeks more affordable, yet professional, relationship support.</p>
+
+<p><strong>Top 3 Competitors and their Strengths/Weaknesses:</strong></p>
+
+<ol>
+<li><strong>Regain (owned by BetterHelp)</strong></li>
+<ul>
+<li><strong>Strengths:</strong> Very large network of licensed therapists, offering a wide selection. Provides unlimited messaging, live chat, phone, or video sessions, allowing for diverse communication preferences. Flexible scheduling and widely accessible.</li>
+<li><strong>Weaknesses:</strong> Higher monthly cost compared to OurRitual for some plans. Therapist quality can be inconsistent ("hit or miss"). BetterHelp, its parent company, has faced controversy regarding data handling and privacy concerns. Does not accept insurance.</li>
+</ul>
+<li><strong>Talkspace</strong></li>
+<ul>
+<li><strong>Strengths:</strong> A leader in accepting health insurance, making it more accessible for users with coverage. Offers a structured, clinical environment with highly vetted therapists accustomed to Evidence-Based Practice (EBP). Provides messaging, phone, and live video chat options.</li>
+<li><strong>Weaknesses:</strong> Can be significantly more expensive without insurance coverage. Mixed experiences regarding therapist quality in general therapy (though clinical advantage in couples therapy is noted).</li>
+</ul>
+<li><strong>Online-Therapy.com</strong></li>
+<ul>
+<li><strong>Strengths:</strong> Focuses on a Cognitive Behavioral Therapy (CBT) based structured approach, which appeals to users seeking clear, organized progress. Offers a combination of video calls, worksheets, a journal, and messaging between sessions, providing a comprehensive self-guided component. Generally lower cost than many competitors.</li>
+<li><strong>Weaknesses:</strong> May not be as specialized solely in couples therapy as OurRitual or Regain. While structured, some users might prefer a more flexible, less "homework-heavy" approach.</li>
+</ul>
+</ol>
+<h3>5. Existing Design & Platform Analysis:</h3>
+
+<p><strong>Platforms:</strong></p>
+<p>OurRitual is available across multiple platforms, emphasizing accessibility:</p>
+<ul>
+<li><strong>Web:</strong> The platform is accessible via web browser.</li>
+<li><strong>iOS:</strong> Available as a mobile app for iPhone and iPad, with mentions of support for Mac, Watch, and TV (likely through universal app compatibility rather than dedicated interfaces).</li>
+<li><strong>Android:</strong> Available as a mobile app on Google Play.</li>
+</ul>
+<p><strong>Existing Design Language, Brand Aesthetic, Colors, and Typography:</strong></p>
+<p>Based on available information and screenshots:</p>
+<ul>
+<li><strong>Design Language:</strong> OurRitual employs a <strong>functional and user-friendly</strong> design language, prioritizing ease of navigation and clear presentation of content. The interface facilitates guided activities, video playback, and journaling. The structure is built around "Pathways" that visually guide users through different topics. It emphasizes a "digital-first" experience that complements human-led therapy.</li>
+<li><strong>Brand Aesthetic:</strong> The aesthetic appears to be <strong>modern, clean, and supportive</strong>. It aims for a professional yet approachable feel, aligning with its mission to make relationship support less intimidating than traditional therapy. The brand conveys compassion and a commitment to "redefining excellence in couples care." There's an emphasis on integrating "human expertise with a digitally-driven and technologically advanced comprehensive relationship care process."</li>
+<li><strong>Colors:</strong> While specific hex codes are not explicitly mentioned in the search results, screenshots suggest a generally <strong>light mode interface</strong> with clear, legible text. Color is used functionally, such as for "color-coded" responses in the emotion tracker feature. The logo often features stylized text, which likely uses a distinct brand color, but this isn't detailed. The overall impression is calm and professional, likely using a palette that evokes trust and warmth without being overly bold or distracting.</li>
+<li><strong>Typography:</strong> No specific typography (like "DM Sans" in the Bookaway example) is identified for OurRitual. However, based on screenshots, the typography is <strong>clean, modern, and highly legible sans-serif</strong>, consistent with a functional and digital-first application designed for easy reading of educational content and prompts. It's likely chosen for clarity and user comfort across various screen sizes.</li>
+</ul>
+<h3>6. Potential Business Opportunities:</h3>
+
+<p>To double its growth, OurRitual can leverage its strong therapeutic core and address existing pain points while expanding strategically:</p>
+
+<ol>
+<li><strong>Enhance App Stability and User Experience (Address Core Pain Points):</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Drastically improve app stability, especially on Android, and resolve reported bugs. A seamless technical experience is foundational for user retention and positive reviews.</li>
+<li><strong>Actionable Steps:</strong> Invest heavily in QA and development for bug fixes. Implement more robust testing protocols. Conduct user experience audits, particularly around login, resource access, and content playback. This would directly address the most common and frustrating complaints, improving app store ratings and user trust.</li>
+</ul>
+<li><strong>Revamp Customer Service & Cancellation Process:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Transform customer service from a pain point into a competitive advantage. Clear, straightforward, and empathetic support builds loyalty.</li>
+<li><strong>Actionable Steps:</strong> Implement a 24/7 in-app chat support with clear response times. Simplify the cancellation process to a transparent, one-click option without hidden fees. Re-evaluate the 14-day money-back guarantee policy to ensure it is genuinely accessible and user-friendly, perhaps by ensuring first sessions can be booked within the guarantee window. This would combat negative perceptions about predatory business practices.</li>
+</ul>
+<li><strong>Introduce Therapist Choice and Enhanced Transparency:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Empower users with more control over their therapist selection and provide greater transparency about expert qualifications.</li>
+<li><strong>Actionable Steps:</strong> Allow users to browse a limited selection of matched therapists (e.g., 2-3 profiles) with bios, specializations, and perhaps short introductory videos before committing. Provide clear credentials and experience for all assigned experts within the app. This addresses a key user concern and enhances trust and personalization.</li>
+</ul>
+<li><strong>Expand into New Market Segments with Niche "Pathways" and Partnerships:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> While already catering to diverse groups (LGBTQ+, military, long-distance), OurRitual can create more specialized "Pathways" and forge partnerships.</li>
+<li><strong>Actionable Steps:</strong></li>
+<ul>
+<li><strong>Pre-Marital Counseling Pathway:</strong> A lucrative segment for proactive couples.</li>
+<li><strong>Co-Parenting Support Pathway:</strong> For separated or divorced parents needing to co-parent effectively.</li>
+<li><strong>Family Dynamics Pathway:</strong> Extend beyond romantic relationships to address broader family challenges (e.g., adult child-parent relationships, sibling dynamics).</li>
+<li><strong>Employee Wellness Programs (B2B):</strong> Partner with companies to offer OurRitual as an employee benefit, tapping into corporate wellness budgets and reaching a new, large user base.</li>
+</ul>
+</ul>
+<li><strong>Develop Tiered Pricing Models and Insurance Integration (Long-term):</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Address the significant barrier of not accepting insurance and cater to a wider range of economic situations.</li>
+<li><strong>Actionable Steps:</strong></li>
+<ul>
+<li><strong>Explore Hybrid Payment Models:</strong> Offer more flexible plans, potentially with fewer sessions per month at a lower price point ("lighter plan" suggested by a user).</li>
+<li><strong>Pursue Insurance Partnerships:</strong> This is a complex but potentially game-changing opportunity. While OurRitual operates under a "coaching model," exploring avenues for partial reimbursement or developing a "therapy" track that qualifies for insurance could unlock a massive market.</li>
+<li><strong>Income-Based Sliding Scale:</strong> Offer discounted rates for verified low-income individuals/couples to expand accessibility.</li>
+</ul>
+</ul>
+<li><strong>"Ritual Community" Feature & Peer Support:</strong></li>
+<ul>
+<li><strong>Opportunity:</strong> Build a sense of community and peer support within the app, which can enhance engagement and provide additional value beyond expert-led sessions.</li>
+<li><strong>Actionable Steps:</strong> Introduce moderated forums or interest-based groups where users can share experiences, tips, and support (e.g., "New Parents Connect," "Long-Distance Love"). This could be integrated with therapist guidance, allowing experts to oversee discussions and offer general insights. This creates network effects and increases stickiness.</li>
+</ul>
+</ol>
+            </div>
+        </section>
+        
+        <section class="tab-content hidden" id="prd">
+            <div class="content-body">
+                <h2>Product Requirement Document: Ritual Match - Transparent Therapist & Session Customization</h2>
+
+<hr>
+
+<h3>1. Document Version & Owner Info</h3>
+
+<ul>
+<li><strong>Document Version:</strong> 1.0</li>
+<li><strong>Date:</strong> October 26, 2023</li>
+<li><strong>Product Manager:</strong> [Your Name/Senior PM]</li>
+<li><strong>Team:</strong> OurRitual Product & Engineering</li>
+<li><strong>Feature Name:</strong> Ritual Match: Transparent Therapist & Session Customization</li>
+</ul>
+<hr>
+
+<h3>2. Objective & Vision</h3>
+
+<p><strong>Objective:</strong> To empower OurRitual users with greater control and transparency in selecting their relationship expert and customizing session parameters, thereby fostering stronger therapeutic alliances, increasing user satisfaction, and strengthening the overall trust in the OurRitual platform.</p>
+
+<p><strong>Vision:</strong> To become the most trusted and personalized platform for relationship support, where users confidently connect with the ideal expert and build a tailored therapeutic journey that seamlessly integrates into their lives, leading to healthier, lasting partnerships. This feature aims to shift OurRitual from an expert-assigned model to a user-driven, choice-centric experience, aligning with our mission to democratize expert assistance through accessibility and flexibility.</p>
+
+<hr>
+
+<h3>3. Target Audience</h3>
+
+<p>This feature targets all OurRitual users and potential new subscribers, particularly those:</p>
+
+<ul>
+<li><strong>Seeking initial expert connection:</strong> Individuals and couples looking to begin their journey with OurRitual who value choice and transparency in their therapist selection.</li>
+<li><strong>Dissatisfied with current therapist matching:</strong> Users who have experienced suboptimal matches or felt a lack of connection with assigned experts.</li>
+<li><strong>Requiring specific expertise:</strong> Couples navigating unique challenges (e.g., new parents, long-distance, LGBTQ+) who want to ensure their expert has relevant specialization.</li>
+<li><strong>With varying time and budget constraints:</strong> Users who desire flexibility in session length to better fit their schedules and financial considerations.</li>
+<li><strong>Tech-savvy individuals:</strong> Those comfortable utilizing app-based tools for search, filtering, and booking.</li>
+</ul>
+<p><strong>Persona Examples:</strong></p>
+<ul>
+<li><strong>The Proactive Professional Couple (Sarah & Mark):</strong> They will appreciate the ability to find a therapist who specializes in communication and proactive relationship building, can accommodate their busy schedules with flexible session lengths, and whose profile aligns with their preference for evidence-based approaches.</li>
+<li><strong>The Stressed New Parents (Emily & David):</strong> They will benefit immensely from being able to find an expert specializing in "love after kids" who understands their unique challenges, and to select session durations that can be realistically managed around their childcare responsibilities. The transparency will reduce anxiety about the initial connection.</li>
+</ul>
+<hr>
+
+<h3>4. User Stories</h3>
+
+<p>As a [type of user], I want to [action] so that [benefit].</p>
+
+<ol>
+<li><strong>As a new OurRitual user,</strong> I want to browse a list of available relationship experts with detailed profiles <strong>so that</strong> I can confidently choose a therapist whose background and approach align with my relationship goals before booking my first session.</li>
+<li><strong>As a couple seeking therapy for a specific issue (e.g., new parenthood),</strong> I want to filter experts by their specialization and experience <strong>so that</strong> I can find someone with relevant expertise to address our unique challenges.</li>
+<li><strong>As a busy professional,</strong> I want to see a therapist's availability and choose between different session lengths (e.g., 20, 40, or 60 minutes) <strong>so that</strong> I can schedule sessions that fit my unpredictable schedule and preferred therapeutic depth.</li>
+<li><strong>As a user evaluating an expert,</strong> I want to watch a short introductory video from the therapist and read aggregated client feedback (internal ratings) <strong>so that</strong> I can get a better feel for their personality and style before making a commitment.</li>
+<li><strong>As an OurRitual subscriber,</strong> I want to easily switch to a different expert if my initial match isn't a good fit, <strong>so that</strong> I don't feel locked into an unproductive therapeutic relationship.</li>
+<li><strong>As a user concerned about cost,</strong> I want to see the pricing options clearly displayed for different session lengths and therapist tiers <strong>so that</strong> I can make an informed decision within my budget.</li>
+</ol>
+<hr>
+
+<h3>5. Functional Requirements & Specs</h3>
+
+<p>This section details the user-facing interactions and system behaviors for the "Ritual Match" feature.</p>
+
+<p><strong>5.1. Expert Discovery & Search (Browse/Filter)</strong></p>
+
+<ul>
+<li><strong>FR-5.1.1: Expert Listing Page:</strong></li>
+<ul>
+<li>Display a paginated list of available relationship experts.</li>
+<li>Each expert card shall display: Profile Photo, Name, Primary Specializations (e.g., "Communication," "Parenting," "Conflict Resolution"), Average Rating (if available), and a short one-liner bio.</li>
+</ul>
+<li><strong>FR-5.1.2: Advanced Filtering System:</strong></li>
+<ul>
+<li><strong>Filter Options (Multi-select where applicable):</strong></li>
+<ul>
+<li><strong>Specialization:</strong> e.g., Gottman Method, EFT, Communication, Intimacy, Parenting, Life Transitions, LGBTQ+ Relationships, Pre-Marital, Conflict Resolution.</li>
+<li><strong>Availability:</strong> Day of Week, Time of Day (Morning, Afternoon, Evening).</li>
+<li><strong>Language:</strong> English, Spanish, etc.</li>
+<li><strong>Gender of Expert:</strong> Male, Female, Non-binary, Prefer not to say.</li>
+<li><strong>Session Length Preference:</strong> 20 min, 40 min, 60 min.</li>
+<li><strong>Price Tier (MVP: Implicit, Phase 2: Explicit):</strong> Standard, Premium.</li>
+</ul>
+<li><strong>FR-5.1.3: Search Bar:</strong> Allow users to search for experts by name or keywords within their bio/specializations.</li>
+<li><strong>FR-5.1.4: Real-time Filter Application:</strong> Filters should apply dynamically, updating the expert list immediately.</li>
+<li><strong>FR-5.1.5: Clear Filters Button:</strong> Provide an option to reset all applied filters.</li>
+</ul>
+</ul>
+<p><strong>5.2. Expert Profile Page</strong></p>
+
+<ul>
+<li><strong>FR-5.2.1: Comprehensive Expert Bio:</strong></li>
+<ul>
+<li>Full Name, Professional Photo, Credentials (e.g., LMFT, LCSW), Years of Experience, Primary Specializations.</li>
+<li>Detailed "About Me" section describing their philosophy, therapeutic approach, and what clients can expect.</li>
+<li>List of specific methods used (e.g., Gottman Method, EFT, CBT).</li>
+</ul>
+<li><strong>FR-5.2.2: Introductory Video (Phase 2):</strong></li>
+<ul>
+<li>A short (1-2 minute) video where the expert introduces themselves and their approach.</li>
+<li>Video player with standard controls (play/pause, volume, fullscreen).</li>
+</ul>
+<li><strong>FR-5.2.3: Availability Calendar:</strong></li>
+<ul>
+<li>Display the expert's upcoming available slots in a clear, interactive calendar format (weekly/monthly view).</li>
+<li>For each slot, show available session lengths (e.g., 20min, 40min, 60min) and associated pricing (if tiered pricing is implemented).</li>
+</ul>
+<li><strong>FR-5.2.4: Client Feedback/Ratings (Phase 2):</strong></li>
+<ul>
+<li>Display an aggregated star rating (out of 5).</li>
+<li>Option to view anonymized, moderated feedback comments from other OurRitual users.</li>
+</ul>
+<li><strong>FR-5.2.5: Integration with Pathways:</strong></li>
+<ul>
+<li>Display the core "Pathways" that the expert commonly works with or recommends.</li>
+</ul>
+</ul>
+<p><strong>5.3. Session Booking & Customization</strong></p>
+
+<ul>
+<li><strong>FR-5.3.1: Session Length Selection:</strong></li>
+<ul>
+<li>When an available slot is selected, present a clear choice of available session lengths (20 min, 40 min, 60 min) with their respective costs.</li>
+<li>Default to 40-minute sessions but allow user override.</li>
+</ul>
+<li><strong>FR-5.3.2: Booking Confirmation:</strong></li>
+<ul>
+<li>Display a summary of the selected expert, date, time, duration, and total cost.</li>
+<li>Require explicit user confirmation before finalizing the booking.</li>
+</ul>
+<li><strong>FR-5.3.3: Payment Integration:</strong></li>
+<ul>
+<li>Utilize existing payment system for booking.</li>
+<li>Clearly display payment amount and method.</li>
+</ul>
+<li><strong>FR-5.3.4: Booking Notifications:</strong></li>
+<ul>
+<li>Send email and in-app notifications upon successful booking.</li>
+<li>Send reminders X hours/days before the session.</li>
+</ul>
+<li><strong>FR-5.3.5: Reschedule/Cancel Session:</strong></li>
+<ul>
+<li>Allow users to reschedule or cancel a session within the platform, adhering to OurRitual's established cancellation policy (which should be improved as per overall product investigation).</li>
+<li>Clearly display any associated fees or refund policies during the process.</li>
+</ul>
+</ul>
+<p><strong>5.4. User Dashboard & My Experts</strong></p>
+
+<ul>
+<li><strong>FR-5.4.1: My Experts Section:</strong></li>
+<ul>
+<li>A dedicated section on the user dashboard displaying the currently chosen expert(s).</li>
+<li>Option to view their profile, upcoming sessions, and a prominent "Switch Expert" button.</li>
+</ul>
+<li><strong>FR-5.4.2: Switch Expert Flow:</strong></li>
+<ul>
+<li>Provide a guided flow for users to select a new expert.</li>
+<li>Clearly communicate implications (e.g., continuity of care, data transfer to new expert if opted-in).</li>
+<li>Offer a brief, optional survey on why they are switching to gather feedback.</li>
+</ul>
+</ul>
+<p><strong>5.5. Expert-Facing Management (Admin Portal - brief)</strong></p>
+
+<ul>
+<li><strong>FR-5.5.1: Expert Profile Management:</strong> Experts can create and update their profiles (bio, specializations, credentials, professional photo).</li>
+<li><strong>FR-5.5.2: Availability Management:</strong> Experts can set their working hours, block off time, and specify available session lengths for different slots.</li>
+<li><strong>FR-5.5.3: Introductory Video Upload:</strong> Experts can upload and manage their introductory videos (Phase 2).</li>
+</ul>
+<hr>
+
+<h3>6. Non-Functional Requirements</h3>
+
+<ul>
+<li><strong>Performance:</strong></li>
+<ul>
+<li>Expert search and filter results should load within 2 seconds.</li>
+<li>Expert profile pages should load within 1.5 seconds.</li>
+<li>Session booking confirmation should process within 3 seconds.</li>
+<li>The system should efficiently handle concurrent searches and bookings.</li>
+</ul>
+<li><strong>Scalability:</strong></li>
+<ul>
+<li>The platform must scale to support a growing database of experts (thousands) and increasing user demand for search, filtering, and booking.</li>
+<li>Availability calendar and scheduling system must handle complex schedules for numerous experts.</li>
+</ul>
+<li><strong>Security:</strong></li>
+<ul>
+<li>All user and expert data (profiles, booking history, payment information) must be encrypted both in transit and at rest.</li>
+<li>Adhere to all relevant data privacy regulations (e.g., HIPAA compliance for session content, though OurRitual currently operates as coaching).</li>
+<li>Robust authentication and authorization mechanisms for both users and experts.</li>
+<li>Protection against common web vulnerabilities (OWASP Top 10).</li>
+</ul>
+<li><strong>Usability & Accessibility:</strong></li>
+<ul>
+<li>The interface must be intuitive and easy to navigate for users of all technical proficiencies.</li>
+<li>Adhere to WCAG 2.1 AA accessibility standards for users with disabilities (e.g., screen reader compatibility, keyboard navigation, sufficient color contrast).</li>
+<li>Responsive design for seamless experience across web, iOS, and Android platforms.</li>
+</ul>
+<li><strong>Reliability:</strong></li>
+<ul>
+<li>High availability (99.9% uptime) for expert discovery and booking functionality.</li>
+<li>Robust error handling and graceful degradation in case of system failures.</li>
+</ul>
+<li><strong>Maintainability:</strong></li>
+<ul>
+<li>Codebase should be modular, well-documented, and follow established coding standards to facilitate future enhancements and bug fixes.</li>
+</ul>
+</ul>
+<hr>
+
+<h3>7. Success Metrics</h3>
+
+<p><strong>North Star Metric:</strong></p>
+<ul>
+<li><strong>Number of long-term (3+ months) active couples/individual users engaged in expert-led sessions.</strong> This reflects successful matching and sustained therapeutic engagement, leading to "healthier, lasting partnerships."</li>
+</ul>
+<p><strong>Key Performance Indicators (KPIs):</strong></p>
+
+<ul>
+<li><strong>Conversion Rate (Expert Selection):</strong> % of users who view expert profiles and successfully book a first session.</li>
+<li><strong>First Session Satisfaction Score:</strong> Post-first-session survey score related to the expert match (e.g., "How satisfied are you with your chosen expert?").</li>
+<li><strong>Expert Switch Rate:</strong> % of users who switch experts after their first or subsequent sessions. <em>(Goal: Reduce this over time as initial matching improves)</em>.</li>
+<li><strong>Average Session Duration Chosen:</strong> Average length of sessions booked (e.g., shift towards more 40/60 min sessions if that's a business goal).</li>
+<li><strong>Churn Rate (Expert-related reasons):</strong> Track cancellations where users cite "poor therapist match" or "lack of transparency" as reasons. <em>(Goal: Reduce)</em>.</li>
+<li><strong>Customer Service Inquiries (Expert Matching/Cancellation):</strong> Number of support tickets related to expert matching, selection, or dissatisfaction. <em>(Goal: Reduce)</em>.</li>
+<li><strong>Average Revenue Per User (ARPU):</strong> Track changes as flexible session lengths and potential tiered pricing are introduced. <em>(Goal: Increase)</em>.</li>
+</ul>
+<p><strong>Adoption Goals (First 6 months post-launch):</strong></p>
+
+<ul>
+<li><strong>Expert Profile Completion:</strong> 90% of active OurRitual experts have completed their detailed profiles.</li>
+<li><strong>User Engagement with Feature:</strong> 70% of new users utilize the search/filter functionality before booking.</li>
+<li><strong>Positive Feedback:</strong> Achieve an average 4.0+/5.0 rating on first-session satisfaction surveys regarding expert match.</li>
+<li><strong>Reduction in Expert-Related Complaints:</strong> 20% reduction in customer service tickets related to expert matching and transparency issues.</li>
+</ul>
+<hr>
+
+<h3>8. Release Plan & Phases</h3>
+
+<p><strong>Phase 1: Minimum Viable Product (MVP)</strong> - Focus on core functionality for choice and transparency.</p>
+
+<ul>
+<li><strong>Timeline:</strong> 3-4 months</li>
+<li><strong>Features:</strong></li>
+<ul>
+<li><strong>Basic Expert Listing:</strong> Display a paginated list of experts with photo, name, primary specializations, and short bio.</li>
+<li><strong>Essential Filters:</strong> Specialization, Availability (Day/Time), Language, Gender.</li>
+<li><strong>Expert Profile Page:</strong> Comprehensive bio, credentials, therapeutic approach, and availability calendar with <strong>fixed 20/40/60 minute session options</strong> and existing pricing structure (no explicit tiered pricing yet).</li>
+<li><strong>Booking Flow:</strong> Select expert, choose available slot and desired length, confirm, process payment (existing system), receive notifications.</li>
+<li><strong>"My Experts" Dashboard:</strong> View current expert, upcoming sessions, and a prominent "Switch Expert" button.</li>
+<li><strong>Basic "Switch Expert" Flow:</strong> Allow users to initiate a switch, showing a generic message about finding a new expert.</li>
+<li><strong>Expert Admin Portal:</strong> Experts can manage their profile and availability.</li>
+</ul>
+<li><strong>User Stories Covered:</strong> 1 (partial), 2, 3 (partial), 5, 6 (partial).</li>
+<li><strong>Success Metrics Focus:</strong> Conversion Rate, First Session Satisfaction, Expert Switch Rate (early reduction), CS Inquiries (initial reduction).</li>
+</ul>
+<p><strong>Phase 2: Enhancements & Optimization</strong> - Refine the experience and introduce advanced capabilities.</p>
+
+<ul>
+<li><strong>Timeline:</strong> 3-6 months after MVP launch</li>
+<li><strong>Features:</strong></li>
+<ul>
+<li><strong>Introductory Expert Videos:</strong> Allow experts to upload short videos to their profiles (FR-5.2.2).</li>
+<li><strong>Client Feedback/Ratings:</strong> Implement a system for users to rate and provide anonymous feedback on experts, displayed on profile pages (FR-5.2.4). Implement moderation queue for comments.</li>
+<li><strong>Advanced Filtering:</strong> Introduce Price Tier filtering (if tiered pricing is rolled out separately), refine existing filters.</li>
+<li><strong>Smart Matching Suggestions:</strong> Implement a basic algorithm that suggests experts based on user intake responses or Pathway progression.</li>
+<li><strong>Tiered Pricing Integration:</strong> Allow experts (or OurRitual) to set different price points for different session lengths or based on experience level, reflected in the booking flow.</li>
+<li><strong>Enhanced "Switch Expert" Flow:</strong> Provide more context and options when switching, including a brief survey to gather reasons for the switch.</li>
+<li><strong>Therapist-Specific Pathway Recommendations:</strong> Experts can highlight specific Pathways they recommend for their clients.</li>
+</ul>
+<li><strong>User Stories Covered:</strong> 1 (full), 3 (full), 4, 6 (full).</li>
+<li><strong>Success Metrics Focus:</strong> Deeper reduction in Expert Switch Rate, increased ARPU (with tiered pricing), higher First Session Satisfaction, improved sentiment in reviews, sustained long-term engagement.</li>
+</ul>
+<hr>
+            </div>
+        </section>
+        
+        <section class="tab-content hidden" id="design">
+            <div class="content-body">
+                <h2>Design System Strategy & Prototypes</h2>
+                <p>An interactive high-fidelity mockup has been generated within Stitch based on the product requirements. You can review the structure of the layout, responsive constraints, and colors using the workspace link below:</p>
+                <div style="text-align: center; margin: 40px 0;">
+                    <a href="https://stitch.withgoogle.com/projects/12927047924178859191" target="_blank" class="btn large primary">Open Stitch Interactive Editor</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.remove('hidden');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
